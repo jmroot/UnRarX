@@ -581,9 +581,9 @@
 		D088BB91055A1D25008E7C24 = {
 			expectedFileType = folder;
 			isa = PBXFileReference;
-			path = "UnRarX Help";
-			refType = 4;
-			sourceTree = "<group>";
+			path = UnRarXHelp;
+			refType = 2;
+			sourceTree = SOURCE_ROOT;
 		};
 		D088BBA5055A1D25008E7C24 = {
 			fileRef = D088BB91055A1D25008E7C24;

@@ -62,7 +62,7 @@
 	<key>CFBundleGetInfoString</key>
 	<string>UnRarX Version 2.0</string>
 	<key>CFBundleHelpBookFolder</key>
-	<string>UnRarX Help</string>
+	<string>UnRarXHelp</string>
 	<key>CFBundleHelpBookName</key>
 	<string>UnRarX Help</string>
 	<key>CFBundleIconFile</key>
