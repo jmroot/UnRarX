@@ -40,7 +40,7 @@ import java.io.*;
  * The Unrar class is responsible for interaction with the Cocoa GUI. It can set
  * the different GUI elements status, and allso gets called when the user 
  * invokes some action.
- * @version v0.0.0
+ * @version v0.0.1
  * @author Daniel Aarno
  */
 public class Unrar extends Thread {
@@ -51,6 +51,7 @@ public class Unrar extends Thread {
 	NSTextField path;
 	NSButton cancel;
 	NSButton unrar;
+	NSPanel question;
 	//End GUI controlls
 	
 	GlobalObjects g;
@@ -79,7 +80,9 @@ public class Unrar extends Thread {
 				g.theSettings.CopySettings(sfPath);
 			g.theSettings = new SettingsHandler(sfPath);
 			//Settings file loaded OK
-			g.theRunner = new UnrarRunner(g.theSettings.LoadSetting("unrarPath"), g.theError);
+			g.theRunner = new UnrarRunner(
+					g.theSettings.LoadSetting("unrarPath"), g.theError);
+					
 		} catch (Exception e) {
 			g.theError.ErrorFatal(e);
 		}
@@ -89,31 +92,29 @@ public class Unrar extends Thread {
  * Starts the extraction in a new thread.
  */	
 	public void run() {
-		char[] buf = new char[800];
-		String str = "";
-		int i;
-		double delta = 100.0D/423.0D;
-		int n = 0;
-		
+		double perc = 0D;
 		//Update the GUI to reflect the state of the application
 		unrar.setEnabled(false);
 		cancel.setEnabled(true);
-		pBar.setDoubleValue(0.0D);
+		pBar.setDoubleValue(perc);
+		
+		g.theRunner.path = path.stringValue();
+		UnrarInterpreter ui = new UnrarInterpreter(g.theError, g.theRunner);
+		ui.RunUnrar();
 
-		BufferedReader r = g.theRunner.RunUnrar(path.stringValue());
-		try {
-			do {
-				n++;
-				i  = r.read(buf, 0, 800);
-				if(i > 0) {
-					str = String.valueOf(buf, 0, i);
-				}
-					
-				status.setTitleWithMnemonic(str); //"file: " + n);
-				pBar.incrementBy(delta);
-			} while(!str.equals("All OK") && i > 0);
-			System.out.println("Exit: " + str);
-		} catch(Exception e) { System.out.println(e); System.exit(-5); }
+		pBar.setIndeterminate(true);
+		
+		while(!ui.IsDone()) {
+			perc = ui.GetPercent();
+			if(perc < 0D)
+				pBar.animate(null);
+			try { sleep(100); }
+			catch(Exception e) { };
+		}
+		pBar.setIndeterminate(false);
+		perc = 0D;
+		pBar.setDoubleValue(perc);
+		
 		unrar.setEnabled(true);
 		cancel.setEnabled(false);
 	}

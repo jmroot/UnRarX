@@ -39,10 +39,10 @@ import java.util.*;
  * This class manages settings in a file. You may use it to retrieve or store settings
  * in a file. The settings are stored in the following way: Each line starts with a keyphrase
  * associated with the setting then comes a '=' and then the setting itself. Example (three lines): 
- * host=123.200.200.200
- * port=4711
+ * host=123.200.200.200<BR>
+ * port=4711<BR>
  * keyphrase=whatever
- * @version v0.1.0
+ * @version v0.1.1
  * @author Daniel Aarno
  */
 public class SettingsHandler

@@ -30,6 +30,7 @@
 		};
 		080E96DDFE201D6D7F000001 = {
 			children = (
+				F7397DA4026E07930164204C,
 				F7157F280264E8880164204C,
 			);
 			isa = PBXGroup;
@@ -309,11 +310,10 @@
 				F7157F270264E7620164204C,
 				F7157F310264E8890164204C,
 				F7157F320264E8890164204C,
-				F7157F330264E8890164204C,
 				F7157F340264E8890164204C,
-				F7157F350264E8890164204C,
 				F7157F360264E8890164204C,
 				F7157F370264E8890164204C,
+				F7397DA5026E07930164204C,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;
@@ -447,20 +447,8 @@
 			settings = {
 			};
 		};
-		F7157F330264E8890164204C = {
-			fileRef = F7157F2C0264E8880164204C;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
 		F7157F340264E8890164204C = {
 			fileRef = F7157F300264E8880164204C;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F7157F350264E8890164204C = {
-			fileRef = F7157F280264E8880164204C;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -473,6 +461,18 @@
 		};
 		F7157F370264E8890164204C = {
 			fileRef = F7157F2F0264E8880164204C;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F7397DA4026E07930164204C = {
+			isa = PBXFileReference;
+			name = UnrarInterpreter.java;
+			path = src/UnrarInterpreter.java;
+			refType = 4;
+		};
+		F7397DA5026E07930164204C = {
+			fileRef = F7397DA4026E07930164204C;
 			isa = PBXBuildFile;
 			settings = {
 			};

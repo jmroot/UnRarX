@@ -25,7 +25,7 @@
             ACTIONS = {Cancel = id; RunUnrar = id; }; 
             CLASS = Unrar; 
             LANGUAGE = Java; 
-            OUTLETS = {cancel = id; pBar = id; path = id; status = id; unrar = id; }; 
+            OUTLETS = {cancel = id; pBar = id; path = id; question = id; status = id; unrar = id; }; 
             SUPERCLASS = java.lang.Object; 
         }
     ); 

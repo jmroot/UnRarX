@@ -40,21 +40,24 @@ import java.io.*;
  * utility (assuming it knows its path) with these options and provide a
  * BufferedReader connected to the stdout of the unrar utility. Unrarunner may
  * also be used to collect some information about a rar-archive.
- * @version v0.0.0
+ * @version v0.0.2
  * @author Daniel Aarno
  */
  
-public class UnrarRunner {
+public class UnrarRunner implements Cloneable{
 	//Options
 	public int action;
 	public UnrarSwitches us = new UnrarSwitches();
-
-	private String unrarPath;
+	public String path;	//the file to do "stuff" on.
+	
+	public OutputStream childOP= null;
+	
+	private String unrarPath;	//Where the unrar utility is located.
 	private ErrorHandler eh = null;
 	
 	public UnrarRunner() {
 	}
-	
+		
 	public UnrarRunner(String unrarPath, ErrorHandler eh) {
 		Init(unrarPath, eh);
 	}
@@ -66,14 +69,19 @@ public class UnrarRunner {
 		this.unrarPath = unrarPath;
 	}
 	
-	public BufferedReader RunUnrar(String filePath) {
+	public InputStream RunUnrar() { return RunUnrar(path); }
+	
+	public InputStream RunUnrar(String filePath) {
 		String str;
 		str = unrarPath;
 		
 		switch(action) {	//Parse the action. Get option to pass to unrar
-			case 0: str += " x"; break;
-			case 1: str += " e"; break;
-			case 2: str += " t"; break;
+			case 0: str += " x"; break; //Extract with full path
+			case 1: str += " e"; break; //Extract to current directory
+			case 2: str += " t"; break; //Test archive files
+			case 3: str += " p"; break; //Print file to stdout
+			case 4: str += " l"; break; //List contents of archive
+			case 5: str += " v"; break; //Verbosely list contents of archive
 		}
 		
 		str += us.GetOptions();
@@ -81,37 +89,34 @@ public class UnrarRunner {
 		return StartUnrar(str);
 	}
 	
-	private BufferedReader StartUnrar(String options) {
-		String str = null;
-		Runtime theRuntime = null;
+	private InputStream StartUnrar(String options) {
+		String[] envp = new String [1];
 		Process child = null;
-		//OutputStream childOP = null;
 		InputStream childIP = null;
-	
-		theRuntime = Runtime.getRuntime();
-	
+		Runtime theRuntime = Runtime.getRuntime();
+		
+		envp[0] = "HOME=" + System.getProperty("user.home");
+		
 		try
 		{
-			child = theRuntime.exec(options);
-			//childOP = child.getOutputStream();
+			child = theRuntime.exec(options, envp);
 			childIP = child.getInputStream();
+			childOP = child.getOutputStream();
+			return childIP;
 		} catch (Exception e)
 		{
 			System.err.println("Could not create child process.");
 			return null;
 		}
+	}
 	
-		try
-		{
-			BufferedReader r = new BufferedReader(
-									new InputStreamReader(childIP));
-			return r;
+	public Object clone() {
+		try {
+			return super.clone();
+		} catch(CloneNotSupportedException e) {
+			eh.ErrorFatal("Could not clone object! Exception: " + e);
 		}
-		catch(Exception e)
-		{
-			System.err.println("Could not pipe to child process: " + e);
-			return null;
-		}
+		return null;
 	}
 }
 
@@ -120,7 +125,7 @@ class UnrarSwitches {
 	public boolean overwrite = false;
 	public boolean recurse = true;
 	public boolean update = true;
-	public boolean yesOnAll = true;
+	public boolean yesOnAll = false;
 	
 	public String GetOptions() {
 		String str = "";
