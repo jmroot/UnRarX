@@ -763,7 +763,7 @@ bool Par1Repairer::VerifyDataFile(DiskFile *diskfile, Par1RepairerSourceFile *so
           u32 newfraction = (u32)(10 * (progress=offset) / filesize);
           if (oldfraction != newfraction)
           {
-            cout << ".." << newfraction*10 << '%' << flush;
+            cout << " .." << newfraction*10 << '%' << flush;
           }
         }
         cout << endl;
@@ -1235,7 +1235,7 @@ bool Par1Repairer::ProcessData(u64 blockoffset, size_t blocklength)
 
         if (oldfraction != newfraction)
         {
-          cout << ".." << newfraction*10 << '%' << flush;
+          cout << " .." << newfraction*10 << '%' << flush;
         }
       }
 

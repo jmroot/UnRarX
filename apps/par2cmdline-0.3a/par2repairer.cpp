@@ -447,7 +447,7 @@ bool Par2Repairer::LoadPacketsFromFile(string filename)
       u32 newfraction = (u32)(10 * offset / filesize);
       if (oldfraction != newfraction)
       {
-        cout << ".." << newfraction*10 << '%' << flush;
+        cout << " .." << newfraction*10 << '%' << flush;
         progress = offset;
       }
     }
@@ -1506,7 +1506,7 @@ bool Par2Repairer::ScanDataFile(DiskFile                *diskfile,    // [in]
     u32 newfraction = (u32)(10 * (progress = filechecksummer.Offset()) / diskfile->FileSize());
     if (oldfraction != newfraction)
     {
-      cout << ".." << newfraction*10 << '%' << flush;
+      cout << " .." << newfraction*10 << '%' << flush;
     }
   }
   cout << endl;
@@ -2099,7 +2099,7 @@ bool Par2Repairer::ProcessData(u64 blockoffset, size_t blocklength)
 
         if (oldfraction != newfraction)
         {
-          cout << ".." << newfraction*10 << '%' << flush;
+          cout << " .." << newfraction*10 << '%' << flush;
         }
       }
 
@@ -2136,7 +2136,7 @@ bool Par2Repairer::ProcessData(u64 blockoffset, size_t blocklength)
 
       if (oldfraction != newfraction)
       {
-        cout << ".." << newfraction*10 << '%' << flush;
+        cout << " .." << newfraction*10 << '%' << flush;
       }
 
       ++copyblock;

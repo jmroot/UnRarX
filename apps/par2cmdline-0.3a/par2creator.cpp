@@ -811,7 +811,7 @@ bool Par2Creator::ProcessData(u64 blockoffset, size_t blocklength)
 
       if (oldfraction != newfraction)
       {
-        cout << ".." << newfraction*10 << '%' << flush;
+        cout << " .." << newfraction*10 << '%' << flush;
       }
     }
     cout << endl;

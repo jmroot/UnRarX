@@ -438,7 +438,7 @@ inline bool ReedSolomon<g>::GaussElim(unsigned int rows, unsigned int leftcols, 
       if (progress != newprogress)
       {
         progress = newprogress;
-        cout << ".." << progress*10 << '%' << flush;
+        cout << " .." << progress*10 << '%' << flush;
       }
     }
   }

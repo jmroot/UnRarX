@@ -220,7 +220,7 @@ bool Par2CreatorSourceFile::Open(const CommandLine::ExtraFile &extrafile, u64 bl
       u32 newfraction = (u32)(10 * offset / filesize);
       if (oldfraction != newfraction)
       {
-        cout << ".." << newfraction * 10 << '%' << flush;
+        cout << " .." << newfraction * 10 << '%' << flush;
       }
     }
 
