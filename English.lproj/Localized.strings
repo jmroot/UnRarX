@@ -1,0 +1,87 @@
+/* Toolbar Label for Password Option */
+" Use Password" = "Password";
+
+/* Toolbar Palette Label for Browse for Files */
+"Browse" = "Browse";
+
+/* Toolbar Label for Browse for Files */
+"Browse Files" = "Browse";
+
+/* Toolbar Tooltip for Browse for Files */
+"Browse for Files" = "Browse Files";
+
+/* Label for Desktop Option in Pulldown */
+"Desktop" = "Desktop";
+
+/* Toolbar Palette Label for Extract Files */
+"Extract" = "Extract";
+
+/* Toolbar Label for Extract Files */
+"Extract Files" = "Extract";
+
+/* Toolbar Tooltip for Extract Files */
+"Extract Files to Disk" = "Extract Files";
+
+/* Title for Extraction Problem Alert */
+"Extraction Problem" = "Extraction Problem";
+
+/* Label for File Directory Option in Pulldown */
+"File Directory" = "File Directory";
+
+/* Toolbar Palette Label for Filename */
+"Filename" = "Filename";
+
+/* Toolbar Label for Info on RAR Archive */
+"Get Info" = "Info";
+
+/* Toolbar Palette Label for Info on RAR Archive */
+"Info" = "Info";
+
+/* Toolbar Tooltip for Info on RAR Archive */
+"List Contents of Archive" = "List Contents of RAR Archive";
+
+/* Label for Manage Option in Pulldown */
+"Manage..." = "Manage...";
+
+/* Confirmation Text */
+"OK" = "OK";
+
+/* Label for Other Option in Pulldown */
+"Other..." = "Other...";
+
+/* Toolbar Palette Label for Password Option */
+"Password" = "Password";
+
+/* Extraction Problem - No file selected error */
+"Please select a file to extract!" = "Please select a file to extract!";
+
+/* Info Problem - No file selected error */
+"Please select a file to list contents!" = "Please select a file to list contents!";
+
+/* Test Problem - No file selected error */
+"Please select a file to test!" = "Please select a file to test!";
+
+/* Extraction Problem - No location selected error */
+"Please select a location to extract file!" = "Please select a location to extract file!";
+
+/* Toolbar Label for Filename */
+"RAR Filename" = "Filename";
+
+/* Toolbar Tooltip for Filename */
+"RAR Filename Display" = "Filename";
+
+/* Toolbar Palette Label for Test Files */
+"Test" = "Test";
+
+/* Toolbar Label for Test Files */
+"Test Files" = "Test";
+
+/* Toolbar Tooltip for Test Files */
+"Test RAR Files" = "Test Files";
+
+/* Toolbar Tooltip for Password Option */
+"Use Password for RAR" = "Use Password for RAR";
+
+/* Title for Verification Problem Alert */
+"Verification Problem" = "Verification Problem";
+
