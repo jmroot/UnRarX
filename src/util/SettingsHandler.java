@@ -42,7 +42,7 @@ import java.util.*;
  * host=123.200.200.200<BR>
  * port=4711<BR>
  * keyphrase=whatever
- * @version v0.1.1
+ * @version v0.2.0
  * @author Daniel Aarno
  */
 public class SettingsHandler
@@ -183,7 +183,26 @@ public String StoreSetting(String setting) throws Exception
 				out.close();
 		}
 	}
+/**
+ * Converts a home-relative path to an absolute path. 
+ * It first checks to see if the path actually is a home relative path
+ * by examining the start of path checking for '~'. This method currently
+ * only works if home is denoted by '~' (as *all* UNIX like systems).
+ * @param path The path to convert to an absolute path.
+ * @return The absolute path. If the path does is not in the expected format
+ * path it self is returned.
+ */	
+	static public String ConvertHomePath(String path) {
+		String homeID = "~";
+		
+		homeID += File.separator;
+		if(!path.startsWith(homeID))
+			return path;
+			
+		return System.getProperty("user.home") + path.substring(1);
+	}
 
 }
 
 /********************************* History ************************************/
+//2002-05-02 -- Added ConvertHomePath()

@@ -33,6 +33,7 @@
  */
 
 import java.io.*;
+import java.util.*;
 
 /**
  * The UnrarRunner stores information needed to run the UNIX unrar utility. 
@@ -40,7 +41,7 @@ import java.io.*;
  * utility (assuming it knows its path) with these options and provide a
  * BufferedReader connected to the stdout of the unrar utility. Unrarunner may
  * also be used to collect some information about a rar-archive.
- * @version v0.0.2
+ * @version v0.0.3
  * @author Daniel Aarno
  */
  
@@ -49,6 +50,7 @@ public class UnrarRunner implements Cloneable{
 	public int action;
 	public UnrarSwitches us = new UnrarSwitches();
 	public String path;	//the file to do "stuff" on.
+	public String destPath; //Where the files will go.
 	
 	public OutputStream childOP= null;
 	
@@ -72,40 +74,46 @@ public class UnrarRunner implements Cloneable{
 	public InputStream RunUnrar() { return RunUnrar(path); }
 	
 	public InputStream RunUnrar(String filePath) {
-		String str;
-		str = unrarPath;
+		String[] str;
+		StringTokenizer tk = new StringTokenizer(us.GetOptions());
+		str = new String[3 + tk.countTokens()];
+		int i;
+		
+		str[0] = unrarPath;
 		
 		switch(action) {	//Parse the action. Get option to pass to unrar
-			case 0: str += " x"; break; //Extract with full path
-			case 1: str += " e"; break; //Extract to current directory
-			case 2: str += " t"; break; //Test archive files
-			case 3: str += " p"; break; //Print file to stdout
-			case 4: str += " l"; break; //List contents of archive
-			case 5: str += " v"; break; //Verbosely list contents of archive
+			case 0: str[1] = "x"; break; //Extract with full path
+			case 1: str[1] = "e"; break; //Extract to current directory
+			case 2: str[1] = "t"; break; //Test archive files
+			case 3: str[1] = "p"; break; //Print file to stdout
+			case 4: str[1] = "l"; break; //List contents of archive
+			case 5: str[1] = "v"; break; //Verbosely list contents of archive
 		}
 		
-		str += us.GetOptions();
-		str += " " + filePath;
+		for(i = 0; i < tk.countTokens(); i++)
+			str[2 + i] = tk.nextToken();
+		str[2 + i] = filePath;
+		if(!destPath.endsWith("/"))
+			destPath += "/";
+		str[3 + i] = destPath;
 		return StartUnrar(str);
 	}
 	
-	private InputStream StartUnrar(String options) {
+	private InputStream StartUnrar(String[] cmd) {
 		String[] envp = new String [1];
 		Process child = null;
 		InputStream childIP = null;
 		Runtime theRuntime = Runtime.getRuntime();
-		
-		envp[0] = "HOME=" + System.getProperty("user.home");
-		
+				
 		try
 		{
-			child = theRuntime.exec(options, envp);
+			child = theRuntime.exec(cmd);
 			childIP = child.getInputStream();
 			childOP = child.getOutputStream();
 			return childIP;
 		} catch (Exception e)
 		{
-			System.err.println("Could not create child process.");
+			eh.ErrorMsg("Could not create child process. " + e);
 			return null;
 		}
 	}

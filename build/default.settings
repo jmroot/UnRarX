@@ -1,4 +1,4 @@
 preferenceFile=Library/Preferences/unrarX.settings
 pathType=home
-unrarPath=/usr/bin/unrar
+unrarPath=builtIn
 theEnd=stop

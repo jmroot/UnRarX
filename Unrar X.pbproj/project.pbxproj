@@ -3,14 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 34;
+	objectVersion = 38;
 	objects = {
 		043355C9FE30361CC02AAC07 = {
 			buildActionMask = 2147483647;
 			files = (
 			);
 			isa = PBXJavaArchiveBuildPhase;
-			name = "Java Archive Files";
 		};
 //040
 //041
@@ -179,6 +178,8 @@
 		};
 		29B97317FDCFA39411CA2CEA = {
 			children = (
+				F558FADD02AEB80801A80002,
+				F5FFE95302ABFCD301A80002,
 				29B97318FDCFA39411CA2CEA,
 				089C165CFE840E0CC02AAC07,
 			);
@@ -233,12 +234,13 @@
 				29B9732DFDCFA39411CA2CEA,
 			);
 			buildSettings = {
+				DEBUGGING_SYMBOLS = NO;
 				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "$(HOME)/Applications";
-				JAVA_COMPILER_FLAGS = "";
 				JAVA_SOURCE_SUBDIR = .;
 				LIBRARY_SEARCH_PATHS = "";
+				OPTIMIZATION_CFLAGS = "-O2";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "Unrar X";
@@ -270,7 +272,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0.1</string>
+	<string>PRE ALPHA 0.0.1</string>
 	<key>NSJavaNeeded</key>
 	<string>YES</string>
 	<key>NSJavaPath</key>
@@ -293,16 +295,16 @@
 			files = (
 			);
 			isa = PBXHeadersBuildPhase;
-			name = Headers;
 		};
 		29B97328FDCFA39411CA2CEA = {
 			buildActionMask = 2147483647;
 			files = (
 				080E96DCFE201CFB7F000001,
 				089C165EFE840E0CC02AAC07,
+				F5FFE95402ABFCD301A80002,
+				F558FADE02AEB80801A80002,
 			);
 			isa = PBXResourcesBuildPhase;
-			name = "Bundle Resources";
 		};
 		29B9732BFDCFA39411CA2CEA = {
 			buildActionMask = 2147483647;
@@ -314,9 +316,11 @@
 				F7157F360264E8890164204C,
 				F7157F370264E8890164204C,
 				F7397DA5026E07930164204C,
+				F579B24F02AAC1A101A80002,
+				F579B25002AAC1A201A80002,
+				F52C1D7E02AAC57101A80002,
 			);
 			isa = PBXSourcesBuildPhase;
-			name = Sources;
 		};
 		29B9732DFDCFA39411CA2CEA = {
 			buildActionMask = 2147483647;
@@ -324,7 +328,6 @@
 				1058C7A3FEA54F0111CA2CBB,
 			);
 			isa = PBXFrameworksBuildPhase;
-			name = "Frameworks & Libraries";
 		};
 //290
 //291
@@ -360,6 +363,62 @@
 //4A2
 //4A3
 //4A4
+//F50
+//F51
+//F52
+//F53
+//F54
+		F52C1D7D02AAC57101A80002 = {
+			isa = PBXFileReference;
+			path = CocoaErrorHandler.java;
+			refType = 4;
+		};
+		F52C1D7E02AAC57101A80002 = {
+			fileRef = F52C1D7D02AAC57101A80002;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F558FADD02AEB80801A80002 = {
+			isa = PBXExecutableFileReference;
+			path = "unrar-2.71_pre_alpha-0.1";
+			refType = 4;
+		};
+		F558FADE02AEB80801A80002 = {
+			fileRef = F558FADD02AEB80801A80002;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F579B24F02AAC1A101A80002 = {
+			fileRef = F7157F280264E8880164204C;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F579B25002AAC1A201A80002 = {
+			fileRef = F7157F2C0264E8880164204C;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5FFE95302ABFCD301A80002 = {
+			isa = PBXFileReference;
+			name = default.settings;
+			path = build/default.settings;
+			refType = 4;
+		};
+		F5FFE95402ABFCD301A80002 = {
+			fileRef = F5FFE95302ABFCD301A80002;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+//F50
+//F51
+//F52
+//F53
+//F54
 //F70
 //F71
 //F72
@@ -388,6 +447,7 @@
 				F7157F2C0264E8880164204C,
 				F7157F2A0264E8880164204C,
 				F7157F2B0264E8880164204C,
+				F52C1D7D02AAC57101A80002,
 			);
 			isa = PBXGroup;
 			name = cocoa;

@@ -39,19 +39,22 @@ import java.util.*;
  * The UnrarInterpreter class can be used to launch the unrar utility via a 
  * UnrarRunner object. It can also gather information on a particular rar
  * file and provide feedback on the extraction process.
- * @version v0.0.0
+ * @version v0.0.2
  * @author Daniel Aarno
  */
 
 
 public class UnrarInterpreter extends Thread{
 	private boolean isDone = true;
+	private double percent = 0;
 	private UnrarRunner ur;
 	private ErrorHandler eh;
 	private InputStream unrarStdOut = null;
 	private String path;
 	private int noFiles = -1;
 	private Vector fileList = new Vector();
+	private Vector listInfo = new Vector();
+	private String status = "idle", currentFile = "";
 
 /**
  * Creates a new empty UnrarInterpreter. Currently there is no use for this
@@ -72,6 +75,7 @@ public class UnrarInterpreter extends Thread{
 	
 	public void RunUnrar() {
 		isDone = false; //There might be a problem here otherwise
+		status = "Extracting files";
 		start();
 	}
 /**
@@ -83,13 +87,50 @@ public class UnrarInterpreter extends Thread{
 		//The implementation here might change. It is probably better to start
 		//unrar and simply pass the InputStream to here. Have to consider this.
 		char[] buf = new char[0x400];
+		int i, file = 0;
+		String str="",tmp;
+		String endl = System.getProperty("line.separator");
+		StringTokenizer tk;
+
 		isDone = false;
 		BufferedReader r = new BufferedReader(new InputStreamReader(ur.RunUnrar()));
+		
 		try {
-			while(r.read(buf, 0, 0x400) >= 0)
-				sleep(100);
+			str = RemoveGarbage(r,2);
+			while(true) {
+				sleep(200);
+				if((i = r.read(buf, 0, 0x400)) > 0)
+					str += String.valueOf(buf, 0, i);
+				else
+					break;
+				tk = new StringTokenizer(str, endl);
+				i = tk.countTokens();
+				if(i > 1 || str.endsWith(endl)) {
+					if(str.startsWith("All OK"))	//Done
+						break;
+				/*
+					if(Check for query here)
+						DoQuery();
+				*/
+					for(i = 1; i < tk.countTokens(); i++) {
+						str = tk.nextToken();
+						file++;
+					}
+					if(!str.endsWith("Ok"))
+						eh.ErrorMsg("Error: " + str);
+					for(i = 0; str.charAt(i) != ' ';i++);
+					str = str.substring(i, str.length() - 2); //Not valid if not Ok
+					currentFile = str.trim();
+					str = tk.nextToken();
+					if(GetFileCount() > 10)
+						percent = (file / (double)GetFileCount())*100.0;
+					else
+						percent = -1.0;
+				}
+			}
 		} catch(Exception e) { };
 				
+		status = "idle";
 		isDone = true;
 	}
 /**
@@ -109,7 +150,7 @@ public class UnrarInterpreter extends Thread{
 		if(isDone)
 			return 0D;
 		else
-			return -1D;
+			return percent;
 	}
 /**
  * Get a listing of filenames, sizes, compressed size and compression ratio.
@@ -125,7 +166,7 @@ public class UnrarInterpreter extends Thread{
  * @return The name of the file currently being decompressed.
  */
 	public String GetCurrentFile() {
-		return "";
+		return currentFile;
 	}
 /**
  * Retrieves status about the decompression phase. This could be the last line
@@ -135,7 +176,7 @@ public class UnrarInterpreter extends Thread{
  * be in a human-readable format.
  */
 	public String GetStatus() {
-		return "";
+		return status;
 	}
 /**
  * Check if the extraction process is completed, ie if the UnrarInterpreter is
@@ -154,93 +195,124 @@ public class UnrarInterpreter extends Thread{
 		tmpRunner.action = 4;	//List contents of archive
 		path = new String(tmpRunner.path);
 		
-		fileList = CreateFileList(tmpRunner.RunUnrar(path));
+		CreateFileList(tmpRunner.RunUnrar(path));
 	}
 	
 	protected Vector CreateFileList(InputStream inStream) {
-		//This works, but needs to be cleaned.
+		//This works, but needs to be cleaned and is error-prone.
 		char[] buf = new char[0x400];
-		int i=0, n=0, sum;
-		String str = "", leftOver="";
-		String newLine = System.getProperty("line.separator");
+		int i=0;
+		String str = "";
+		String endl = System.getProperty("line.separator");
 		StringTokenizer tk;
 		Vector lines = new Vector();
 		
 		BufferedReader r = new BufferedReader(new InputStreamReader(inStream));
 		try {
-			do {
-				sum = 0;
-				str = leftOver;
-				while(i >= 0 && sum < 0x400) {
-					i  = r.read(buf, 0, 0x400 - sum);
-					sum += i;
-					if(i > 0)
-						str += String.valueOf(buf, 0, i);
-					if(sum < 0x400)
-						sleep(50);
+			//Strip out the first 8 lines (double \n gives < 4 with tokenizer)
+			str = RemoveGarbage(r,4);
+			str = AddToFileList(str);
+			while(true) {
+				sleep(200);
+				if((i = r.read(buf, 0, 0x400)) > 0)
+					str += String.valueOf(buf, 0, i);
+				else
+					break;
+				tk = new StringTokenizer(str, endl);
+				i = tk.countTokens();
+				if(i > 1 || str.endsWith(endl)) {
+					if(str.startsWith("-----------------------------------------------------------------------------"))
+						break;
+					str = AddToFileList(str);
 				}
-								
-				tk = new StringTokenizer(str, "-"); 
-				if(n == 0)	//Remove garbage in the begining
-					str = RemoveGarbage(tk);
-				
-				leftOver = "";
-				boolean merge = true;
-				String tmp="";
-				
-				while(tk.hasMoreTokens()) {					
-					if(merge)
-						str = tk.nextToken(newLine);
-					else
-						str = tmp;
-					if(!tk.hasMoreTokens()) {
-						int size = lines.size();
-						leftOver = ((String)lines.get(size-1)) + str;
-						lines.remove(size-1);
-						break;
-					}
-					tmp = tk.nextToken();
-					merge = false;
-					if(tmp.startsWith("                ")) {//broken line
-						merge = true;
-						str = str + tmp;
-						tmp = "";
-						if(!tk.hasMoreTokens()) {
-							leftOver = str;
-							break;
-						}
-					}
-					str = str.trim();
-					if((str.startsWith("-----") && str.endsWith("-----")))
-						break;
-					n++;
-					lines.add(str);
-					if(!tk.hasMoreTokens()) {
-						leftOver = tmp;
-						break;
-					}
-				}				
-				
-			} while(i > 0);
+			}
 		} catch(Exception e) { System.out.println(e); System.exit(-5); }
-		return lines;
+		
+		
+		
+/*		for(i = 0; i < fileList.size(); i++)
+			System.out.println((String)fileList.get(i));
+*/		
+		return null;
 	}
-	
-	private String RemoveGarbage(StringTokenizer tk) {	
-	//This is very dirty an bug prone
-	//If the path to the .rar file contains '-' this will
-	//cause unexpected results.
-		String str;
-		eh.DebugMsg("Call to buggy code");
-		str = tk.nextToken("-");
-		str = tk.nextToken("-");
-		str = tk.nextToken(System.getProperty("line.separator"));
-		str = str.trim();
-		if(!(str.startsWith("-----") && str.endsWith("-----"))) {
-			eh.ErrorFatal("Could not understand what the unrar utility trying to tell me");
-		}
+
+/**
+ * Strips the "garbage" ie the header with copyright and more from the
+ * beginning of unrar output.
+ * @param r a BufferedReader wrapped around unrar's stdout.
+ * @return The remainder of what was read from the buffer.
+ */
+	private String RemoveGarbage(BufferedReader r, int size) {
+		char[] buf = new char[0x400];
+		String str="";
+		String endl = System.getProperty("line.separator");
+		int lines = 0, i;
+		StringTokenizer tk = null;
+		boolean removeEndl = true;
+		
+		try {
+			while(lines < size + 1) {
+				sleep(500);
+				if((i = r.read(buf, 0, 0x400)) > 0)
+					str += String.valueOf(buf, 0, i);
+				else
+					eh.ErrorFatal("Could not understand what unrar is telling me");
+				tk = new StringTokenizer(str, endl);
+				lines = tk.countTokens();
+			} 
+		} catch(Exception e) { System.out.println(e); System.exit(-5); }
+		removeEndl = !str.endsWith(endl);
+
+		str = new String("");
+		for(i = 0; i < size; i++)
+			tk.nextToken();
+		while(tk.hasMoreTokens())
+			str += (tk.nextToken() + endl);
+		if(removeEndl)
+			str = new String(str.toCharArray(), 0, str.length() - endl.length());
 		return str;
 	}
+	
+	private String AddToFileList(String str) {
+		String endl = System.getProperty("line.separator");
+		boolean endlAtEnd = str.endsWith(endl);
+		int i;
+		StringTokenizer lineToken = new StringTokenizer(str, endl);
+		StringTokenizer spaceToken = new StringTokenizer(" ");
+		String name = "", info, tmp;
+
+		while(lineToken.hasMoreTokens()) {
+			if(name.equals(""))
+				name = lineToken.nextToken();
+			if(!lineToken.hasMoreTokens())
+				break;
+			info = lineToken.nextToken();
+			
+			//sizof string check here
+			if(!lineToken.hasMoreTokens())
+				return name + endl + info + (endlAtEnd ? endl : "");
+			
+			if(info.startsWith("        ")) {	//Broken line
+				fileList.add(name);
+				listInfo.add(info);
+				name = info = "";
+			}
+			else {	//on one line
+				for(i = 21; i > 0 && name.charAt(i) != ' '; i--);
+				tmp = new String(name.toCharArray(),0,i);
+				fileList.add(tmp.trim());
+				tmp = new String(name.toCharArray(),i + 1,name.length() - i - 1);
+				listInfo.add(tmp.trim());
+				name = info;
+				info = "";
+			}
+		}
+		if(endlAtEnd)	//What hapends if name=null, endlAtEnd = true?
+				return name + endl;
+			else
+				return name;
+	}
+	
 /**
  * Check if the current stats is up to date.
  * @return true if the stats is up to date, otherwise false.
@@ -251,7 +323,12 @@ public class UnrarInterpreter extends Thread{
 		else
 			return (path.equals(ur.path) && fileList.size() > 0);
 	}
-	
+
+
+/**
+ * Returns the number of files in the archive connected to the UnrarRunner.
+ * @return Number of files in the archive.
+ */	
 	public int GetFileCount() {
 		if(!StatsUpToDate())
 			GenerateStats();

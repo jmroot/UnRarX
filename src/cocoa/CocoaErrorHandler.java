@@ -3,17 +3,14 @@
  *	character wide window to view this file.
  */
 
-/*	This class is a wrapper to collect and assemble error messages. This class
- *	can then be sub-classed to present error messages in a more natural way,
- *	for instance using a GUI. The ErrorHandler base-class simply writes them 
- *	to stderr.
+/*	This class presents the user with error messages.
  */
 
 /*
- *	ErrorHandler.java
- *	Project: N/A
+ *	CocoaErrorHandler.java
+ *	Project: Unrar X
  *
- *	Created by Daniel Aarno on Tue Apr 09 2002.
+ *	Created by Daniel Aarno on Thu May 30 2002.
  *	Copyright (c) 2002 Daniel Aarno.
  *
  *	This program is free software; you can redistribute it and/or modify
@@ -34,20 +31,20 @@
 /*	See the README file on how to install this program
  */
  
- import java.io.*;
+import com.apple.cocoa.foundation.*;
+import com.apple.cocoa.application.*;
+import java.io.*;
 
 /**
- * This class is a wrapper to collect and assemble error messages. This class
- * can then be sub-classed to present error messages in a more natural way,
- * for instance using a GUI. The ErrorHandler base-class simply writes them to
- * stderr.
- * @version v0.0.2
+ * Use an alert dialogue in Cocoa to display error and debug messages.
+ * @version v0.0.0
  * @author Daniel Aarno
  */
 
-public class ErrorHandler {
+public class CocoaErrorHandler extends ErrorHandler {
 
 public boolean debug = false;
+public NSWindow theWindow = null;
 /**
  * Prints message and e to stderr and returns, if debug is enabled.
  * Otherwise it returnes without action.
@@ -55,8 +52,7 @@ public boolean debug = false;
  * @param e The Exception to display
  */
 	public void DebugMsg(String message, Exception e) {
-		String str = message + "\n\n" + e;
-		DebugMsg(str); 
+		super.DebugMsg(message, e);
 	}
 /**
  * Prints message and e to stderr and exits with status 1, if debug is enabled.
@@ -65,8 +61,7 @@ public boolean debug = false;
  * @param e The Exception to display
  */	
 	public void DebugFatal(String message, Exception e) {
-		String str = message + "\n\n" + e;
-		DebugFatal(str); 
+		super.DebugFatal(message, e);
 	}
 /**
  * Prints message to stderr and returns, if debug is enabled. Otherwise it 
@@ -74,8 +69,7 @@ public boolean debug = false;
  * @param message The debug message to display
  */	
 	public void DebugMsg(String message) {
-		if(debug)
-			System.err.println(message);
+		super.DebugMsg(message);
 	}
 /**
  * Prints message to stderr and exits with status 1, if debug is enabled. 
@@ -83,44 +77,62 @@ public boolean debug = false;
  * @param message The debug message to display
  */	
 	public void DebugFatal(String message) {
-		if(!debug)
-			return;
-		System.err.println(message);
-		System.exit(1);
+		super.DebugFatal(message);
 	}
 /**
- * Prints message to stderr and returns.
- * @param message The debug message to display
+ * Prints message to an alert dialogue and returns.
+ * @param message The error message to display
  */	
 	public void ErrorMsg(String message) {
+		int i;
 		System.err.println(message);
+		i = NSAlertPanel.runAlert(null, message,
+										"Dismiss", "Quit", null);
+		if(i != NSAlertPanel.DefaultReturn)
+			ErrorFatal("This could be because the user choose to quit or" + 
+					" because of an unknown error.");
 	}
 /**
- * Prints message to stderr and exits with status 1.
+ * Prints message to stderr, andan alert dialogue, exits with status 1 
+ * when dialogue is dissmised.
  * @param message The debug message to display
  */		
 	public void ErrorFatal(String message) {
 		System.err.println(message);
+		NSAlertPanel.runAlert("Unrar X will now exit!", 
+									message, "Quit", null, null);
 		System.exit(1);
 	}
 /**
- * Formats and prints e to stderr and returns.
+ * Formats and prints e to stderr and an alert dialogue and returns
+ * when the dialogue is dissmissed.
  * @param e The Exception to display
  */		
 	public void ErrorMsg(Exception e) {
-		ErrorMsg("Exception: " + e);
+		int i;
+		super.ErrorMsg("Exception: " + e);
+		i = NSAlertPanel.runAlert("An unrecoverable exception occured!" +
+			"Unrar X will now exit.",
+			"This is a bad thing and probably means that a " + 
+			"programmer has done something bad. It is recomended that" +
+			"you restart the application.\n The exception is:\n" + 
+								e, "Dismiss", "Quit", null);
+
+		if(i != NSAlertPanel.DefaultReturn)
+			ErrorFatal("This could be because the user choose to quit or" + 
+					" because of an unknown error.");
 	}
 /**
- * Formats and prints e to stderr and exits with status 1.
+ * Formats and prints e to stderr and an alert dialogue. Exits with status 1
+ * when the dialogue is dissmissed.
  * @param e The Exception to display
  */	
 	public void ErrorFatal(Exception e) {
-		ErrorFatal("Exception: " + e);
+		super.ErrorMsg("Exception: " + e);
+		NSAlertPanel.runAlert("An uncaught exception occured!",
+			"This is a bad thing and probably means that a " + 
+			"programmer has done something bad.\n The exception is:\n" + 
+								e, "Dismiss", "Quit", null);
+		System.exit(1);
 	}
 }
-
-/********************************* History ************************************/
-/*
-2002-04-09	First included in the Unrar X project.
-
-*/
