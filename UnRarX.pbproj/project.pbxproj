@@ -1,0 +1,734 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 38;
+	objects = {
+		080E96DCFE201CFB7F000001 = {
+			fileRef = 29B97318FDCFA39411CA2CEA;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		080E96DDFE201D6D7F000001 = {
+			children = (
+				F533825D01DE8A3601A80164,
+				F533825E01DE8A3601A80164,
+				F5F1952401F51DDC01A80164,
+				F5F1952501F51DDC01A80164,
+				F558FA69025805F401A80164,
+				F558FA6A025805F401A80164,
+			);
+			isa = PBXGroup;
+			name = Classes;
+			refType = 4;
+		};
+		089C165CFE840E0CC02AAC07 = {
+			children = (
+				089C165DFE840E0CC02AAC07,
+			);
+			isa = PBXVariantGroup;
+			name = InfoPlist.strings;
+			refType = 4;
+		};
+		089C165DFE840E0CC02AAC07 = {
+			fileEncoding = 10;
+			isa = PBXFileReference;
+			name = English;
+			path = English.lproj/InfoPlist.strings;
+			refType = 4;
+		};
+		089C165EFE840E0CC02AAC07 = {
+			fileRef = 089C165CFE840E0CC02AAC07;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+//080
+//081
+//082
+//083
+//084
+//100
+//101
+//102
+//103
+//104
+		1058C7A0FEA54F0111CA2CBB = {
+			children = (
+				1058C7A1FEA54F0111CA2CBB,
+			);
+			isa = PBXGroup;
+			name = "Linked Frameworks";
+			refType = 4;
+		};
+		1058C7A1FEA54F0111CA2CBB = {
+			isa = PBXFrameworkReference;
+			name = Cocoa.framework;
+			path = /System/Library/Frameworks/Cocoa.framework;
+			refType = 0;
+		};
+		1058C7A2FEA54F0111CA2CBB = {
+			children = (
+				29B97325FDCFA39411CA2CEA,
+				29B97324FDCFA39411CA2CEA,
+			);
+			isa = PBXGroup;
+			name = "Other Frameworks";
+			refType = 4;
+		};
+		1058C7A3FEA54F0111CA2CBB = {
+			fileRef = 1058C7A1FEA54F0111CA2CBB;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+//100
+//101
+//102
+//103
+//104
+//170
+//171
+//172
+//173
+//174
+		17587328FF379C6511CA2CBB = {
+			isa = PBXApplicationReference;
+			path = UnRarX.app;
+			refType = 3;
+		};
+//170
+//171
+//172
+//173
+//174
+//190
+//191
+//192
+//193
+//194
+		19C28FACFE9D520D11CA2CBB = {
+			children = (
+				17587328FF379C6511CA2CBB,
+			);
+			isa = PBXGroup;
+			name = Products;
+			refType = 4;
+		};
+//190
+//191
+//192
+//193
+//194
+//290
+//291
+//292
+//293
+//294
+		29B97313FDCFA39411CA2CEA = {
+			buildStyles = (
+				4A9504CCFFE6A4B311CA0CBA,
+				4A9504CDFFE6A4B311CA0CBA,
+			);
+			hasScannedForEncodings = 1;
+			isa = PBXProject;
+			mainGroup = 29B97314FDCFA39411CA2CEA;
+			projectDirPath = "";
+			targets = (
+				29B97326FDCFA39411CA2CEA,
+			);
+		};
+		29B97314FDCFA39411CA2CEA = {
+			children = (
+				080E96DDFE201D6D7F000001,
+				29B97315FDCFA39411CA2CEA,
+				29B97317FDCFA39411CA2CEA,
+				29B97323FDCFA39411CA2CEA,
+				19C28FACFE9D520D11CA2CBB,
+			);
+			isa = PBXGroup;
+			name = UnRarX;
+			path = "";
+			refType = 4;
+		};
+		29B97315FDCFA39411CA2CEA = {
+			children = (
+				29B97316FDCFA39411CA2CEA,
+			);
+			isa = PBXGroup;
+			name = "Other Sources";
+			path = "";
+			refType = 4;
+		};
+		29B97316FDCFA39411CA2CEA = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = main.m;
+			refType = 4;
+		};
+		29B97317FDCFA39411CA2CEA = {
+			children = (
+				D0C530210531078D00000102,
+				F52E084A01F224BF01A80164,
+				29B97318FDCFA39411CA2CEA,
+				D043D90405158B1700000102,
+				D043D90005158B1700000102,
+				089C165CFE840E0CC02AAC07,
+				D043D90205158B1700000102,
+				D0E7716C05328FCB00000102,
+			);
+			isa = PBXGroup;
+			name = Resources;
+			path = "";
+			refType = 4;
+		};
+		29B97318FDCFA39411CA2CEA = {
+			children = (
+				29B97319FDCFA39411CA2CEA,
+			);
+			isa = PBXVariantGroup;
+			name = MainMenu.nib;
+			path = "";
+			refType = 4;
+		};
+		29B97319FDCFA39411CA2CEA = {
+			isa = PBXFileReference;
+			name = English;
+			path = English.lproj/MainMenu.nib;
+			refType = 4;
+		};
+		29B97323FDCFA39411CA2CEA = {
+			children = (
+				1058C7A0FEA54F0111CA2CBB,
+				1058C7A2FEA54F0111CA2CBB,
+			);
+			isa = PBXGroup;
+			name = Frameworks;
+			path = "";
+			refType = 4;
+		};
+		29B97324FDCFA39411CA2CEA = {
+			isa = PBXFrameworkReference;
+			name = AppKit.framework;
+			path = /System/Library/Frameworks/AppKit.framework;
+			refType = 0;
+		};
+		29B97325FDCFA39411CA2CEA = {
+			isa = PBXFrameworkReference;
+			name = Foundation.framework;
+			path = /System/Library/Frameworks/Foundation.framework;
+			refType = 0;
+		};
+		29B97326FDCFA39411CA2CEA = {
+			buildPhases = (
+				29B97327FDCFA39411CA2CEA,
+				29B97328FDCFA39411CA2CEA,
+				29B9732BFDCFA39411CA2CEA,
+				29B9732DFDCFA39411CA2CEA,
+			);
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = UnRarX;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
+				WRAPPER_EXTENSION = app;
+			};
+			dependencies = (
+			);
+			isa = PBXApplicationTarget;
+			name = UnRarX;
+			productInstallPath = "$(HOME)/Applications";
+			productName = UnRarX;
+			productReference = 17587328FF379C6511CA2CBB;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>rar</string>
+				<string>RAR</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>unrar.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>RAR File</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>rar</string>
+				<string>RAR</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>par</string>
+				<string>PAR</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>unrar.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>PAR File</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>par</string>
+				<string>PAR</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>*</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Document</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>****</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+	</array>
+	<key>CFBundleExecutable</key>
+	<string>UnRarX</string>
+	<key>CFBundleGetInfoString</key>
+	<string>UnRarX Version 1.6</string>
+	<key>CFBundleIconFile</key>
+	<string>unrar.icns</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.peternoriega.unrarx</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>UnRarX</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>Version 1.6</string>
+	<key>CFBundleSignature</key>
+	<string>rarx</string>
+	<key>CFBundleVersion</key>
+	<string>1.6</string>
+	<key>NSMainNibFile</key>
+	<string>MainMenu</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+</dict>
+</plist>
+";
+		};
+		29B97327FDCFA39411CA2CEA = {
+			buildActionMask = 2147483647;
+			files = (
+				F533825F01DE8A3601A80164,
+				F5F1952601F51DDC01A80164,
+				F558FA6C025805F401A80164,
+			);
+			isa = PBXHeadersBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29B97328FDCFA39411CA2CEA = {
+			buildActionMask = 2147483647;
+			files = (
+				080E96DCFE201CFB7F000001,
+				089C165EFE840E0CC02AAC07,
+				F52E084C01F224E301A80164,
+				D043D90505158B1700000102,
+				D043D90305158B1700000102,
+				F5F8D3D3025AC2B701A80164,
+				F5F8D3D4025AC2B701A80164,
+				F5539D72028397B601A80164,
+				F5539D74028399BF01A80164,
+				F5B2BB8D028E0E6301A80164,
+				F544F4EC0350ED9D01100121,
+				D043D90105158B1700000102,
+				35BAF4F50538451B00A80002,
+				35BAF4FE0538496400A80002,
+				35BAF50005384B0000A80002,
+			);
+			isa = PBXResourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29B9732BFDCFA39411CA2CEA = {
+			buildActionMask = 2147483647;
+			files = (
+				29B9732CFDCFA39411CA2CEA,
+				F533826001DE8A3601A80164,
+				F5F1952701F51DDC01A80164,
+				F558FA6E025805F401A80164,
+			);
+			isa = PBXSourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29B9732CFDCFA39411CA2CEA = {
+			fileRef = 29B97316FDCFA39411CA2CEA;
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+				);
+			};
+		};
+		29B9732DFDCFA39411CA2CEA = {
+			buildActionMask = 2147483647;
+			files = (
+				1058C7A3FEA54F0111CA2CBB,
+			);
+			isa = PBXFrameworksBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+//290
+//291
+//292
+//293
+//294
+//350
+//351
+//352
+//353
+//354
+		35BAF4F50538451B00A80002 = {
+			fileRef = D0E7716C05328FCB00000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		35BAF4FD0538496400A80002 = {
+			isa = PBXExecutableFileReference;
+			name = unrar;
+			path = apps/unrar/unrar;
+			refType = 4;
+		};
+		35BAF4FE0538496400A80002 = {
+			fileRef = 35BAF4FD0538496400A80002;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		35BAF4FF05384B0000A80002 = {
+			isa = PBXExecutableFileReference;
+			name = par2;
+			path = "apps/par2cmdline-0.3a/par2";
+			refType = 4;
+		};
+		35BAF50005384B0000A80002 = {
+			fileRef = 35BAF4FF05384B0000A80002;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+//350
+//351
+//352
+//353
+//354
+//4A0
+//4A1
+//4A2
+//4A3
+//4A4
+		4A9504CCFFE6A4B311CA0CBA = {
+			buildRules = (
+			);
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				OPTIMIZATION_CFLAGS = "-O0";
+			};
+			isa = PBXBuildStyle;
+			name = Development;
+		};
+		4A9504CDFFE6A4B311CA0CBA = {
+			buildRules = (
+			);
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+			};
+			isa = PBXBuildStyle;
+			name = Deployment;
+		};
+//4A0
+//4A1
+//4A2
+//4A3
+//4A4
+//D00
+//D01
+//D02
+//D03
+//D04
+		D043D8FE05158A5C00000102 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = English;
+			path = English.lproj/Localized.strings;
+			refType = 4;
+		};
+		D043D90005158B1700000102 = {
+			children = (
+				D043D8FE05158A5C00000102,
+			);
+			isa = PBXVariantGroup;
+			name = Localized.strings;
+			refType = 4;
+		};
+		D043D90105158B1700000102 = {
+			fileRef = D043D90005158B1700000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		D043D90205158B1700000102 = {
+			children = (
+				F59ADE550258137101A80164,
+			);
+			isa = PBXVariantGroup;
+			name = Credits.rtf;
+			refType = 4;
+		};
+		D043D90305158B1700000102 = {
+			fileRef = D043D90205158B1700000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		D043D90405158B1700000102 = {
+			children = (
+				F558FA6B025805F401A80164,
+			);
+			isa = PBXVariantGroup;
+			name = AboutBox.nib;
+			refType = 4;
+		};
+		D043D90505158B1700000102 = {
+			fileRef = D043D90405158B1700000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		D0C530210531078D00000102 = {
+			children = (
+				35BAF4FF05384B0000A80002,
+				35BAF4FD0538496400A80002,
+			);
+			isa = PBXGroup;
+			name = apps;
+			path = "";
+			refType = 4;
+		};
+		D0E7716C05328FCB00000102 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = gpl.txt;
+			refType = 4;
+		};
+//D00
+//D01
+//D02
+//D03
+//D04
+//F50
+//F51
+//F52
+//F53
+//F54
+		F52E084A01F224BF01A80164 = {
+			children = (
+				F52E084B01F224E301A80164,
+				F5F8D3D0025AC2B701A80164,
+				F544F4EB0350ED9D01100121,
+				F5539D73028399BF01A80164,
+				F5F8D3D1025AC2B701A80164,
+				F5539D71028397B601A80164,
+				F5B2BB8C028E0E6301A80164,
+			);
+			isa = PBXGroup;
+			name = images;
+			refType = 4;
+		};
+		F52E084B01F224E301A80164 = {
+			isa = PBXFileReference;
+			name = browse.tif;
+			path = images/browse.tif;
+			refType = 4;
+		};
+		F52E084C01F224E301A80164 = {
+			fileRef = F52E084B01F224E301A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F533825D01DE8A3601A80164 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = Controller.h;
+			refType = 4;
+		};
+		F533825E01DE8A3601A80164 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = Controller.m;
+			refType = 4;
+		};
+		F533825F01DE8A3601A80164 = {
+			fileRef = F533825D01DE8A3601A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F533826001DE8A3601A80164 = {
+			fileRef = F533825E01DE8A3601A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F544F4EB0350ED9D01100121 = {
+			isa = PBXFileReference;
+			name = info.tif;
+			path = images/info.tif;
+			refType = 4;
+		};
+		F544F4EC0350ED9D01100121 = {
+			fileRef = F544F4EB0350ED9D01100121;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5539D71028397B601A80164 = {
+			isa = PBXFileReference;
+			name = test.tif;
+			path = images/test.tif;
+			refType = 4;
+		};
+		F5539D72028397B601A80164 = {
+			fileRef = F5539D71028397B601A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5539D73028399BF01A80164 = {
+			isa = PBXFileReference;
+			name = password.tif;
+			path = images/password.tif;
+			refType = 4;
+		};
+		F5539D74028399BF01A80164 = {
+			fileRef = F5539D73028399BF01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F558FA69025805F401A80164 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = AboutBox.h;
+			refType = 4;
+		};
+		F558FA6A025805F401A80164 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = AboutBox.m;
+			refType = 4;
+		};
+		F558FA6B025805F401A80164 = {
+			isa = PBXFileReference;
+			name = English;
+			path = English.lproj/AboutBox.nib;
+			refType = 4;
+		};
+		F558FA6C025805F401A80164 = {
+			fileRef = F558FA69025805F401A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F558FA6E025805F401A80164 = {
+			fileRef = F558FA6A025805F401A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F59ADE550258137101A80164 = {
+			isa = PBXFileReference;
+			name = English;
+			path = English.lproj/Credits.rtf;
+			refType = 4;
+		};
+		F5B2BB8C028E0E6301A80164 = {
+			isa = PBXFileReference;
+			name = unrar.icns;
+			path = images/unrar.icns;
+			refType = 4;
+		};
+		F5B2BB8D028E0E6301A80164 = {
+			fileRef = F5B2BB8C028E0E6301A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F1952401F51DDC01A80164 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = DropView.h;
+			refType = 4;
+		};
+		F5F1952501F51DDC01A80164 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = DropView.m;
+			refType = 4;
+		};
+		F5F1952601F51DDC01A80164 = {
+			fileRef = F5F1952401F51DDC01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F1952701F51DDC01A80164 = {
+			fileRef = F5F1952501F51DDC01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F8D3D0025AC2B701A80164 = {
+			isa = PBXFileReference;
+			name = extract.tif;
+			path = images/extract.tif;
+			refType = 4;
+		};
+		F5F8D3D1025AC2B701A80164 = {
+			isa = PBXFileReference;
+			name = stop.tif;
+			path = images/stop.tif;
+			refType = 4;
+		};
+		F5F8D3D3025AC2B701A80164 = {
+			fileRef = F5F8D3D0025AC2B701A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F8D3D4025AC2B701A80164 = {
+			fileRef = F5F8D3D1025AC2B701A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA;
+}
