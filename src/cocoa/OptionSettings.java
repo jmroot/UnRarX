@@ -38,7 +38,7 @@ import com.apple.cocoa.application.*;
 /**
  * The OptionsSettings class is responsible for retrieving and setting the 
  * options (or switches) in the GUI.
- * @version v0.0.0
+ * @version v0.0.1
  * @author Daniel Aarno
  */
 
@@ -55,8 +55,13 @@ public class OptionSettings {
 	public void SetAssumeYes(NSButton sender) {
 		NSButton b = (NSButton)sender;
 		g.theRunner.us.yesOnAll = (b.state() > 0 ? true : false);
-		if(b.state() == 1)
+		if(b.state() == 1) {
 			overwrite.setState(1);
+			overwrite.setEnabled(false);
+			g.theRunner.us.overwrite = true;
+		}
+		else
+			overwrite.setEnabled(true);
 	}
     
 	public void SetFreshen(Object sender) {
