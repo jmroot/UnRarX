@@ -22,10 +22,18 @@
             SUPERCLASS = java.lang.Object; 
         }, 
         {
-            ACTIONS = {Cancel = id; RunUnrar = id; }; 
+            ACTIONS = {Cancel = id; RunUnrar = id; SelectDest = id; SelectFile = id; }; 
             CLASS = Unrar; 
             LANGUAGE = Java; 
-            OUTLETS = {cancel = id; pBar = id; path = id; question = id; status = id; unrar = id; }; 
+            OUTLETS = {
+                cancel = id; 
+                destPath = id; 
+                pBar = id; 
+                path = id; 
+                question = id; 
+                status = id; 
+                unrar = id; 
+            }; 
             SUPERCLASS = java.lang.Object; 
         }
     ); 
