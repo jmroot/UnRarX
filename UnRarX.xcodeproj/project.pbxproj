@@ -176,7 +176,7 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		35BAF4FD0538496400A80002 /* unrar */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = unrar; path = apps/unrar/unrar; sourceTree = "<group>"; };
 		35BAF4FF05384B0000A80002 /* par2 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = par2; path = "apps/par2cmdline-0.3a/par2"; sourceTree = "<group>"; };
-		D043D8FE05158A5C00000102 /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localized.strings; sourceTree = "<group>"; };
+		D043D8FE05158A5C00000102 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localized.strings; sourceTree = "<group>"; };
 		D088BB91055A1D25008E7C24 /* UnRarXHelp */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UnRarXHelp; sourceTree = SOURCE_ROOT; };
 		D088BC2C055A267F008E7C24 /* Info-UnRarX__Xcode_.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info-UnRarX__Xcode_.plist"; sourceTree = "<group>"; };
 		D088BC2D055A2680008E7C24 /* UnRarX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnRarX.app; sourceTree = BUILT_PRODUCTS_DIR; };
